@@ -65,7 +65,7 @@ class EmployeeController extends Controller
             'working_location' => $request->working_location,
         ]);
     
-        return redirect()->route('employees.index')->with('success', 'Employee created successfully!');
+        return redirect()->route('employee.index')->with('success', 'Employee created successfully!');
     }
     
 
@@ -117,7 +117,7 @@ class EmployeeController extends Controller
         'working_location'
     ]));
 
-    return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
+    return redirect()->route('employee.index')->with('success', 'Employee updated successfully.');
 }
 
 
@@ -125,7 +125,7 @@ class EmployeeController extends Controller
 public function destroy(Employee $employee)
 {
     $employee->delete(); // Soft delete
-    return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
+    return redirect()->route('employee.index')->with('success', 'Employee deleted successfully.');
 }
 
 }

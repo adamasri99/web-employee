@@ -15,17 +15,14 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Removed duplicate route - using employees.index as homepage
 
-Route::get('/employee', [EmployeeController::class, 'index'])->name('employees.index');
+Route::get('/', [EmployeeController::class, 'index'])->name('employee.index');
 Route::post('/employee', [EmployeeController::class, 'store'])->name('employee.store');
 Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
 Route::get('/employee/{employee}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
 Route::put('/employee/{employee}/update', [EmployeeController::class, 'update'])->name('employee.update');
 Route::delete('/employee/{employee}/destroy', [EmployeeController::class, 'destroy'])->name('employee.destroy');
 
-// PUT THIS AT THE END — so it doesn’t override everything else
+// PUT THIS AT THE END — so it doesn't override everything else
 Route::get('/employee/{employee}', [EmployeeController::class, 'show'])->name('employee.show');
-
