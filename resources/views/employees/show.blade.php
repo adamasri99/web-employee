@@ -40,18 +40,18 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <!-- Logo -->
             <div class="d-flex align-items-center">
-                <img src="{{ asset('images/logo.png') }}?v={{ time() }}" alt="Company Logo" style="max-height: 50px;">
+                <img src="{{ asset('images/logo.png') }}?v={{ time() }}" alt="Company Logo" style="max-height: 80px;">
             </div>
         
             <!-- Title -->
             <h1 class="text-center flex-grow-1 m-0">
-                Client Details
+                Employee Details
             </h1>
             
         
             <!-- Back Button -->
             <div class="text-end">
-                <a href="{{ route('employees.index') }}" class="btn btn-secondary btn-sm">Back to Dashboard</a>
+                <a href="{{ route('employee.index') }}" class="btn btn-secondary btn-sm">Back to Dashboard</a>
             </div>
         </div>
 

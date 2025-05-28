@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Zeta Client Dashboard</title>
+    <title>Zeta employee Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css">
@@ -29,11 +29,11 @@
         <!-- Header Section -->
         <div class="row align-items-center mb-4">
             <div class="col-2">
-                <img src="{{ asset('images/logo.png') }}?v={{ time() }}" alt="Company Logo" style="max-height: 60px;">
+                <img src="{{ asset('images/logo.png') }}?v={{ time() }}" alt="Company Logo" style="max-height: 80px;">
             </div>
             <div class="col-8 text-center">
                 <h1 class="text-center flex-grow-1 m-0" style="font-family: 'titan one', sans-serif; font-weight: 500;">
-                    Zeta Client Dashboard
+                    Zeta Employee Dashboard
                 </h1>
             </div>
             <div class="col-2"></div>
@@ -42,11 +42,11 @@
         <!-- Actions Section -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <a href="{{ route('employee.create') }}" class="btn btn-primary">+ Add New Client</a>
+                <a href="{{ route('employee.create') }}" class="btn btn-primary">+ Add New Employee</a>
             </div>
 
             <div class="col-md-6">
-                <form action="{{ route('employees.index') }}" method="GET" class="d-flex">
+                <form action="{{ route('employee.index') }}" method="GET" class="d-flex">
                     <input type="text" name="search" class="form-control me-2" placeholder="Search by name, email, department...">
                     <button type="submit" class="btn btn-outline-secondary">Search</button>
                 </form>
@@ -72,7 +72,7 @@
                         <tbody>
                             @forelse ($employees as $employee)
                                 <tr>
-                                    <td class="no-col">{{ $loop->iteration }}</td>
+                                    <td class="no-col text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $employee->full_name }}</td>
                                     <td>{{ $employee->gender }}</td>
                                     <td>{{ $employee->email }}</td>

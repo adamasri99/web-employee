@@ -101,7 +101,7 @@
 
             <div class="d-flex justify-content-between">
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="{{ route('employees.index') }}" class="btn btn-outline-danger">Cancel</a>
+                <a href="{{ route('employee.index') }}" class="btn btn-outline-danger">Cancel</a>
             </div>
         </form>
     </div>

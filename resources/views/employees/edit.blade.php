@@ -20,10 +20,10 @@
     <div class="container mt-4">
         <div class="row align-items-center mb-4">
             <div class="col-md-2 text-start">
-                <img src="{{ asset('images/logo.png') }}?v={{ time() }}" alt="Company Logo" style="max-height: 60px;">
+                <img src="{{ asset('images/logo.png') }}?v={{ time() }}" alt="Company Logo" style="max-height: 80px;">
             </div>
             <div class="col-md-8 text-center">
-                <h1 class="m-0 fw-bold" >Edit Client Details</h1>
+                <h1 class="m-0 fw-bold" >Edit Employee Details</h1>
             </div>
             <div class="col-md-2"></div>
         </div>
@@ -96,7 +96,7 @@
 
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">Update</button>
-                    <a href="{{ route('employees.index') }}" class="btn btn-outline-secondary">Back to Dashboard</a>
+                    <a href="{{ route('employee.index') }}" class="btn btn-outline-secondary">Back to Dashboard</a>
                 </div>
             </form>
         </div>
