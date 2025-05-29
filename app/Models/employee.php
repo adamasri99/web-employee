@@ -20,11 +20,17 @@ class Employee extends Model
         'department',
         'birthday',
         'start_date',
-        'working_location'
+        'working_location',
+        'user_id'
     ];
 
     public function getAgeAttribute()
     {
         return $this->birthday ? Carbon::parse($this->birthday)->age : null;
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

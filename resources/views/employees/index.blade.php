@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Zeta employee Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
@@ -8,14 +9,16 @@
 
     <style>
         .no-col {
-        padding-left: 5px; /* or even 0px */
-        text-align: left;
-        width: 20px; /* optional: reduce column width */
+            padding-left: 5px;
+            /* or even 0px */
+            text-align: left;
+            width: 20px;
+            /* optional: reduce column width */
         }
-
     </style>
 
 </head>
+
 <body class="bg-light">
 
     <div class="container py-4">
@@ -29,25 +32,42 @@
         <!-- Header Section -->
         <div class="row align-items-center mb-4">
             <div class="col-2">
-                <img src="{{ asset('images/logo.png') }}?v={{ time() }}" alt="Company Logo" style="max-height: 80px;">
+                <img src="{{ asset('images/logo.png') }}?v={{ time() }}" alt="Company Logo"
+                    style="max-height: 80px;">
             </div>
             <div class="col-8 text-center">
                 <h1 class="text-center flex-grow-1 m-0" style="font-family: 'titan one', sans-serif; font-weight: 500;">
                     Zeta Employee Dashboard
                 </h1>
             </div>
-            <div class="col-2"></div>
+            <div class="col-2">
+                <div class="text-end">
+                    @if (auth()->check())
+                        <span class="me-3">Logged in as: <strong>{{ auth()->user()->name }}</strong>
+                            ({{ auth()->user()->role }})</span>
+                        <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm">Login</a>
+                    @endif
+                </div>
+            </div>
         </div>
 
         <!-- Actions Section -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <a href="{{ route('employee.create') }}" class="btn btn-primary">+ Add New Employee</a>
+                @if(auth()->check() && auth()->user()->role === 'admin')
+                    <a href="{{ route('employee.create') }}" class="btn btn-primary">+ Add New Employee</a>
+                @endif
             </div>
 
             <div class="col-md-6">
                 <form action="{{ route('employee.index') }}" method="GET" class="d-flex">
-                    <input type="text" name="search" class="form-control me-2" placeholder="Search by name, email, department...">
+                    <input type="text" name="search" class="form-control me-2"
+                        placeholder="Search by name, email, department...">
                     <button type="submit" class="btn btn-outline-secondary">Search</button>
                 </form>
             </div>
@@ -79,19 +99,24 @@
                                     <td>{{ $employee->department ?? '—' }}</td>
                                     <td>{{ $employee->start_date ?? '—' }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('employee.show', $employee->id) }}" class="btn btn-outline-info btn-sm">Show</a>
-                                        <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
-                                        <form action="{{ route('employee.destroy', $employee->id) }}" method="POST" style="display:inline-block">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this employee?')">Delete</button>
-                                        </form>
+                                        <a href="{{ route('employee.show', $employee->id) }}"
+                                            class="btn btn-outline-info btn-sm">Show</a>
+                                        @if(auth()->check() && auth()->user()->role === 'admin')
+                                            <a href="{{ route('employee.edit', $employee->id) }}"
+                                                class="btn btn-outline-warning btn-sm">Edit</a>
+                                            <form action="{{ route('employee.destroy', $employee->id) }}" method="POST"
+                                                style="display:inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-outline-danger btn-sm"
+                                                    onclick="return confirm('Are you sure you want to delete this employee?')">Delete</button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="text-center text-muted">No Client found.</td>
+                                    <td colspan="7" class="text-center text-muted">No employees found.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -103,13 +128,14 @@
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.0/js/dataTables.min.js"></script>
-    
+
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#employeeTable').DataTable({
                 searching: false // disables the default search bar
             });
         });
     </script>
 </body>
+
 </html>
