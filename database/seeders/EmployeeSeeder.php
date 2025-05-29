@@ -13,6 +13,10 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
+        // Create 100 random employees using the factory
+        Employee::factory()->count(100)->create();
+        
+        // Create a few specific employees with fixed data
         Employee::create([
             'full_name' => 'John Doe',
             'gender' => 'Male',
@@ -22,7 +26,7 @@ class EmployeeSeeder extends Seeder
             'department' => 'IT',
             'birthday' => Carbon::parse('1990-01-15'),
             'start_date' => Carbon::parse('2022-03-01'),
-            'working_location' => 'Headquarters'
+            'working_location' => 'Office'
         ]);
 
         Employee::create([
@@ -34,18 +38,6 @@ class EmployeeSeeder extends Seeder
             'department' => 'HR',
             'birthday' => Carbon::parse('1988-07-22'),
             'start_date' => Carbon::parse('2021-11-15'),
-            'working_location' => 'Branch Office'
-        ]);
-
-        Employee::create([
-            'full_name' => 'Michael Johnson',
-            'gender' => 'Male',
-            'email' => 'michael.j@example.com',
-            'phone_number' => '555-123-4567',
-            'address' => '789 Pine Road, Village',
-            'department' => 'Marketing',
-            'birthday' => Carbon::parse('1992-04-10'),
-            'start_date' => Carbon::parse('2023-01-10'),
             'working_location' => 'Remote'
         ]);
     }
