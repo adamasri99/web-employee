@@ -47,3 +47,4 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/employee/{employee}/destroy', [EmployeeController::class, 'destroy'])->name('employee.destroy');
     });
 });
+
